@@ -15,6 +15,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('prepare_result')
 
+
 def get_student_data():
     """
     Get student deatils (Name and Marks in different subjects) from teacher.
@@ -29,29 +30,30 @@ def get_student_data():
         while True:
             std_data = input(f"\nEnter {w1} {w2} {w3} : ")
             if i == 0:
-                if (validate_student_data("string_value_check",std_data)):
+                if (validate_student_data("string_value_check", std_data)):
                     break
             else:
-                if (validate_student_data("int_value_check",std_data)):
+                if (validate_student_data("int_value_check", std_data)):
                     break
-        
+
         std_cmplt_data.append(std_data)
 
     return std_cmplt_data
 
+
 def validate_student_data(check, value):
     """
-    Inside the try block, 
-        First check for missing value input and raise error if its empty,
-        Secondly check for string value for special characters and raise error if exists,
-        At last check if numeric value is out of range (0-100) and raise error if it does. 
+    Inside the try block,
+    First check for missing value input and raise error if its empty,
+    Secondly check for string value for special characters and raise error if exists,
+    At last check if numeric value is out of range (0-100) and raise error if it does.
     """
 
     try:
         if not value:
             raise ValueError("This field should not be empty")
         elif (check == "string_value_check"):
-            if (all(chr.isalpha() or chr.isspace() for chr in value) == False):
+            if (all(chr.isalpha() or chr.isspace() for chr in value) is False):
                 raise ValueError(f"This field should not contains any number(s) or special charater(s), you provided '{value}'")
         elif (check == "int_value_check"):
             if (int(value) < 0):
@@ -64,6 +66,7 @@ def validate_student_data(check, value):
         return False
 
     return True
+
 
 def update_student_data(new_row, worksheet):
     """
@@ -78,12 +81,114 @@ def update_student_data(new_row, worksheet):
 
     print(f"\n'{worksheet}' worksheet updated successfully\n")
 
+
+def update_student_result(new_row, worksheet):
+    """
+    Update student data in the Prepare_Results's worksheets.
+    """
+
+    print(f"\nUpdating '{worksheet}' worksheet...\n")
+    worksheet_to_update = SHEET.worksheet(worksheet)
+
+    # adds new row to the end of the current data
+    for row in new_row:
+        worksheet_to_update.append_row(row)
+
+    print(f"\n'{worksheet}' worksheet updated successfully\n")
+
+
+def calculate_grades(std_percentage):
+    """
+    Calculate and return the grade value baesd upon percentage of marks.
+    """
+
+    std_grade = ''
+
+    if std_percentage >= 95:
+        std_grade = 'A+'
+    elif std_percentage >= 85:
+        std_grade = 'A'
+    elif std_percentage >= 70:
+        std_grade = 'B+'
+    elif std_percentage >= 55:
+        std_grade = 'B'
+    elif std_percentage >= 40:
+        std_grade = 'C'
+    else:
+        std_grade = 'F'
+
+    return std_grade
+
+
+def calculate_result():
+    """
+    Calculate the result of students using marks in each subject.
+    Firstly calculated the total marks,
+    then percentage of marks out of max total marks of 500.
+    At last, called calculate_grades() function to assign grades to students.
+    """
+
+    marks = SHEET.worksheet('student_data').get_all_values()
+    final_result = []
+
+    for i in range(1, len(marks)):
+        std_name = ''
+        total_marks = 0
+        result = []
+
+        for j in range(len(marks[i])):
+
+            if j == 0:
+                std_name = marks[i][j]
+            else:
+                total_marks += int(marks[i][j])
+
+        result.append(std_name)
+        result.append(total_marks)
+        percentage = round(((total_marks / 500) * 100), 2)
+        result.append(percentage)
+        grade = calculate_grades(percentage)
+        result.append(grade)
+        final_result.append(result)
+
+    return final_result
+
+
+def show_result():
+    full_result = SHEET.worksheet('student_result').get_all_values()
+    for i in range(len(full_result)):
+        if i != 0:
+            print(f"| {full_result[i][0]} \t| {full_result[i][1]} \t| {full_result[i][2]} \t| {full_result[i][3]} | ")
+
+
 def main():
     """
     Run all program functions.
     """
 
-    student_data = get_student_data()
-    update_student_data(student_data, "student_data")
+    while True:
+        print("Select option '1' to add student data.")
+        print("Select option '2' to view result.")
+        select_choice = int(input("\nChoose Option : "))
 
-main() #calling main function to run the whole program
+        if (select_choice == 1):
+            student_data = get_student_data()
+            update_student_data(student_data, "student_data")
+
+            print("Would you like to add more student data.")
+            print("Enter 'Y' for 'Yes' or 'N' for 'No'.")
+            add_data_check = input("\nEnter you choice : ")
+
+            if (add_data_check.lower() != 'y'):
+                break
+            
+        elif (select_choice == 2):
+            show_result()
+            break
+
+    student_result = calculate_result()
+    update_student_result(student_result, "student_result")
+    show_result()
+
+
+main()  # calling main function to run the whole program
