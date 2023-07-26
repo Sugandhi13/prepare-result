@@ -1,6 +1,7 @@
 # importing required libraries
 import gspread
 from google.oauth2.service_account import Credentials
+from tabulate import tabulate
 import json
 
 # defining constant variables
@@ -16,31 +17,56 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('prepare_result')
 
 
+def clear_worksheet(sheet_to_clear):
+    """
+    Remove all data except heading row from the worksheet.
+    """
+    headings = SHEET.worksheet(sheet_to_clear).get_all_values()[0]
+    worksheet_to_clear = SHEET.worksheet(sheet_to_clear)
+    worksheet_to_clear.clear()
+    worksheet_to_clear.append_row(headings)
+    return worksheet_to_clear
+
+
 def validate_student_data(check, value):
     """
-    Inside the try block,
-    First check for missing value input and raise error if its empty,
-    Secondly check for string value for special characters and raise error if exists,
-    At last check if numeric value is out of range (0-100) and raise error if it does.
+    Inside the try block raise error if,
+    user try to give input of missing value, special characters or
+    a numeric value that is out of range (0-100) for subject marks.
     """
 
     try:
         if not value:
             raise ValueError("this field should not be empty")
         elif (check == "option_value_check"):
-            if ((int(value) < 0) | (int(value) > 3)):
-                raise ValueError(f"enter a valid option value, you provided '{value}'")
+            if ((int(value) < 0) | (int(value) > 5)):
+                raise ValueError(
+                    f"enter a valid option value, you provided '{value}'"
+                    )
         elif (check == "add_data_check"):
             if int(value):
-                raise ValueError(f"enter a valid option value, you provided '{value}'")
+                raise ValueError(
+                    f"enter a valid option value, you provided '{value}'"
+                    )
+        elif (check == "clear_sheet_check"):
+            if int(value):
+                raise ValueError(
+                    f"enter a valid option value, you provided '{value}'"
+                    )
         elif (check == "string_value_check"):
             if (all(chr.isalpha() or chr.isspace() for chr in value) is False):
-                raise ValueError(f"only alphabetic values are allowed, you provided '{value}'")
+                raise ValueError(
+                    f"only alphabets are allowed, you provided '{value}'"
+                    )
         elif (check == "int_value_check"):
             if (int(value) < 0):
-                raise ValueError(f"the value should be greater than 0, you provided '{value}'")
+                raise ValueError(
+                    f"value should be greater than 0, you provided '{value}'"
+                    )
             if (int(value) > 100):
-                raise ValueError(f"the value should be less than 100, you provided '{value}'")
+                raise ValueError(
+                    f"value should be less than 100, you provided '{value}'"
+                    )
 
     except ValueError as ve:
         print(f"\nInvalid data: {ve}. Please try again!")
@@ -91,20 +117,22 @@ def update_student_data(new_row, worksheet):
     print(f"\n{worksheet_name} worksheet updated successfully.")
 
 
-def update_student_result(new_row, worksheet):
+def show_student_data():
     """
-    Update student result in worksheets.
+    Show student(s) data.
     """
 
-    worksheet_name = worksheet.upper()
-    print(f"\nUpdating {worksheet_name} worksheet...")
-    worksheet_to_update = SHEET.worksheet(worksheet)
+    full_student_data = SHEET.worksheet('student_data').get_all_values()
+    print("\n----------------------------------------------")
 
-    # adds new row to the end of the current data
-    for row in new_row:
-        worksheet_to_update.append_row(row)
+    if (len(full_student_data) > 1):
+        for i in range(len(full_student_data)):
+            if (i != 0):
+                print(f"{full_student_data[i]}")
+    else:
+        print("No student data to display!")
 
-    print(f"\n{worksheet_name} worksheet updated successfully.")
+    print("----------------------------------------------")
 
 
 def calculate_grades(std_percentage):
@@ -164,13 +192,31 @@ def calculate_result():
             grade = calculate_grades(percentage)
             result.append(grade)
             final_result.append(result)
-  
+
         print("\nStudent(s) result calculated successfully.")
 
     else:
         print("\nNo student data available to calculate result!")
 
     return final_result
+
+
+def update_student_result(new_row, worksheet):
+    """
+    Update student result in worksheets.
+    """
+
+    worksheet_name = worksheet.upper()
+    print(f"\nUpdating {worksheet_name} worksheet...")
+
+    clear_worksheet(worksheet)
+    worksheet_to_update = SHEET.worksheet(worksheet)
+
+    # adds new row to the end of the current data
+    for row in new_row:
+        worksheet_to_update.append_row(row)
+
+    print(f"\n{worksheet_name} worksheet updated successfully.")
 
 
 def show_result():
@@ -182,9 +228,11 @@ def show_result():
     print("\n----------------------------------------------")
 
     if (len(full_result) > 1):
-        for i in range(len(full_result)):
-            if (i != 0):
-                print(f"| {full_result[i][0]} \t| {full_result[i][1]} \t| {full_result[i][2]} \t| {full_result[i][3]} | ")
+        header = full_result[0]
+        print(tabulate(full_result, header))
+#        for i in range(len(full_result)):
+ #           if (i != 0):
+  #              print(f"{full_result[i]}")
     else:
         print("No result data to display!")
 
@@ -200,7 +248,9 @@ def main():
         print("\n==============================================")
         print("Enter '1' to Add New Data")
         print("Enter '2' to Calculate Result")
-        print("Enter '3' to View Result")
+        print("Enter '3' to View Student Data")
+        print("Enter '4' to View Result")
+        print("Enter '5' to Clear Existing Data")
         print("Enter '0' to End the Program")
         print("==============================================")
 
@@ -223,14 +273,16 @@ def main():
                 add_data_check = input("\nPlease, enter your choice : ")
 
                 if ((add_data_check != '1') & (add_data_check != '0')):
-                    (validate_student_data("add_data_check", add_data_check))
+                    validate_student_data("add_data_check", add_data_check)
 
                 elif (add_data_check == '0'):
                     break
-                
+
                 else:
                     student_data = get_student_data()
                     update_student_data(student_data, "student_data")
+
+            show_student_data()
 
         elif (option == 2):
             student_result = calculate_result()
@@ -240,7 +292,38 @@ def main():
                 show_result()
 
         elif (option == 3):
+            show_student_data()
+
+        elif (option == 4):
             show_result()
+
+        elif (option == 5):
+
+            while True:
+                print("\n==============================================")
+                print("Enter '1' to Clear Student Data.")
+                print("Enter '2' to Clear Student Result.")
+                print("Enter '0' to Exit")
+                print("==============================================")
+                clear_sheet_check = input("\nPlease, enter your choice : ")
+
+                if (clear_sheet_check == '0'):
+                    break
+
+                elif (clear_sheet_check == '1'):
+                    print(f"\nClearing STUDENT_DATA worksheet...")
+                    clear_worksheet("student_data")
+                    print(f"\nSTUDENT_DATA worksheet cleared successfully.")
+
+                elif (clear_sheet_check == '2'):
+                    print(f"\nClearing STUDENT_RESULT worksheet...")
+                    clear_worksheet("student_result")
+                    print(f"\nSTUDENT_RESULT worksheet cleared successfully.")
+
+                else:
+                    validate_student_data(
+                        "clear_sheet_check", clear_sheet_check
+                        )
 
         elif (option == 0):
             print("\n----------------------------------------------")
