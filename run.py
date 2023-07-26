@@ -17,15 +17,40 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('prepare_result')
 
 
+def confirm_data_delete(data_to_delete):
+    """
+    Check from user if he is surely want to delete data.
+    """
+
+    sheet_name = data_to_delete.upper()
+    while True:
+        print("\n----------------------------------------------")
+        print(f"Are you sure you want to delete {sheet_name}?")
+        print("Once deleted this data can't be recovered!")
+        print(f"\nEnter '1' to delete {sheet_name}.")
+        print("Enter '0' to return on previous menu.")
+        print("----------------------------------------------")
+        delete_data_check = input("\nConfirm your action : ")
+
+        if (delete_data_check == '0'):
+            break
+
+        elif (delete_data_check == '1'):
+            return True
+
+        else:
+            validate_student_data("delete_data_check", delete_data_check)
+
+
 def clear_worksheet(sheet_to_clear):
     """
     Remove all data except heading row from the worksheet.
     """
+
     headings = SHEET.worksheet(sheet_to_clear).get_all_values()[0]
     worksheet_to_clear = SHEET.worksheet(sheet_to_clear)
     worksheet_to_clear.clear()
     worksheet_to_clear.append_row(headings)
-    return worksheet_to_clear
 
 
 def validate_student_data(check, value):
@@ -40,33 +65,24 @@ def validate_student_data(check, value):
             raise ValueError("this field should not be empty")
         elif (check == "option_value_check"):
             if ((int(value) < 0) | (int(value) > 5)):
-                raise ValueError(
-                    f"enter a valid option value, you provided '{value}'"
-                    )
+                raise ValueError(f"enter a valid option value, you provided '{value}'")
         elif (check == "add_data_check"):
             if int(value):
-                raise ValueError(
-                    f"enter a valid option value, you provided '{value}'"
-                    )
+                raise ValueError(f"enter a valid option value, you provided '{value}'")
         elif (check == "clear_sheet_check"):
             if int(value):
-                raise ValueError(
-                    f"enter a valid option value, you provided '{value}'"
-                    )
+                raise ValueError(f"enter a valid option value, you provided '{value}'")
+        elif (check == "delete_data_check"):
+            if int(value):
+                raise ValueError(f"enter a valid option value, you provided '{value}'")
         elif (check == "string_value_check"):
             if (all(chr.isalpha() or chr.isspace() for chr in value) is False):
-                raise ValueError(
-                    f"only alphabets are allowed, you provided '{value}'"
-                    )
+                raise ValueError(f"only alphabets are allowed, you provided '{value}'")
         elif (check == "int_value_check"):
             if (int(value) < 0):
-                raise ValueError(
-                    f"value should be greater than 0, you provided '{value}'"
-                    )
+                raise ValueError(f"value should be greater than 0, you provided '{value}'")
             if (int(value) > 100):
-                raise ValueError(
-                    f"value should be less than 100, you provided '{value}'"
-                    )
+                raise ValueError(f"value should be less than 100, you provided '{value}'")
 
     except ValueError as ve:
         print(f"\nInvalid data: {ve}. Please try again!")
@@ -85,14 +101,18 @@ def get_student_data():
 
     print("\n----------------------------------------------")
     for i in range(len(headings)):
-        w1, w2, w3 = headings[i].split('_')
 
         while True:
-            std_data = input(f"Enter {w1} {w2} {w3} : ")
+
             if i == 0:
+                std_data = input("Enter Student Full Name : ")
+
                 if (validate_student_data("string_value_check", std_data)):
                     break
+
             else:
+                std_data = input(f"Enter Marks in {headings[i]} : ")
+
                 if (validate_student_data("int_value_check", std_data)):
                     break
 
@@ -186,7 +206,7 @@ def calculate_result():
 
             result.append(std_name)
             result.append(total_marks)
-            percentage = round(((total_marks / 500) * 100), 2)
+            percentage = total_marks / 500
             result.append(percentage)
             grade = calculate_grades(percentage)
             result.append(grade)
@@ -211,7 +231,6 @@ def update_student_result(new_row, worksheet):
     clear_worksheet(worksheet)
     worksheet_to_update = SHEET.worksheet(worksheet)
 
-    # adds new row to the end of the current data
     for row in new_row:
         worksheet_to_update.append_row(row)
 
@@ -229,11 +248,11 @@ def show_result():
     if (len(full_result) > 1):
         header = full_result[0]
         data = full_result[1:]
+
         print(tabulate(data, header, tablefmt="fancy_outline"))
 
     else:
         print("No result data to display!")
-
 
 
 def main():
@@ -298,8 +317,8 @@ def main():
 
             while True:
                 print("\n==============================================")
-                print("Enter '1' to Clear Student Data.")
-                print("Enter '2' to Clear Student Result.")
+                print("Enter '1' to Delete Student Data.")
+                print("Enter '2' to Delete Student Result Data.")
                 print("Enter '0' to Exit")
                 print("==============================================")
                 clear_sheet_check = input("\nPlease, enter your choice : ")
@@ -308,19 +327,39 @@ def main():
                     break
 
                 elif (clear_sheet_check == '1'):
-                    print(f"\nClearing STUDENT_DATA worksheet...")
-                    clear_worksheet("student_data")
-                    print(f"\nSTUDENT_DATA worksheet cleared successfully.")
+
+                    if (confirm_data_delete("student_data")):
+                        data = SHEET.worksheet("student_data").get_all_values()
+
+                        if (len(data) > 1):
+                            print("\n----------------------------------------------")
+                            print("Deleting Student Data...")
+                            clear_worksheet("student_data")
+                            print("\nStudent Data deleted successfully.")
+
+                        else:
+                            print("\n----------------------------------------------")
+                            print("Student Data worksheet is already empty!")
+                            print("No data to delete.")
 
                 elif (clear_sheet_check == '2'):
-                    print(f"\nClearing STUDENT_RESULT worksheet...")
-                    clear_worksheet("student_result")
-                    print(f"\nSTUDENT_RESULT worksheet cleared successfully.")
+
+                    if (confirm_data_delete("student_result")):
+                        data = SHEET.worksheet("student_result").get_all_values()
+
+                        if (len(data) > 1):
+                            print("\n----------------------------------------------")
+                            print("Deleting Student Result Data...")
+                            clear_worksheet("student_result")
+                            print("\nStudent Result Data deleted successfully.")
+
+                        else:
+                            print("\n----------------------------------------------")
+                            print("Student Result Data worksheet is already empty!")
+                            print("No data to delete.")
 
                 else:
-                    validate_student_data(
-                        "clear_sheet_check", clear_sheet_check
-                        )
+                    validate_student_data("clear_sheet_check", clear_sheet_check)
 
         elif (option == 0):
             print("\n----------------------------------------------")
