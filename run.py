@@ -1,9 +1,9 @@
-#importing required libraries
+# importing required libraries
 import gspread
 from google.oauth2.service_account import Credentials
 import json
 
-#defining constant variables
+# defining constant variables
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -27,8 +27,9 @@ def get_student_data():
     for i in range(len(headings)):
         w1, w2, w3 = headings[i].split('_')
 
+        print()
         while True:
-            std_data = input(f"\nEnter {w1} {w2} {w3} : ")
+            std_data = input(f"Enter {w1} {w2} {w3} : ")
             if i == 0:
                 if (validate_student_data("string_value_check", std_data)):
                     break
@@ -70,31 +71,33 @@ def validate_student_data(check, value):
 
 def update_student_data(new_row, worksheet):
     """
-    Update student data in the Prepare_Results's worksheets.
+    Update student data in worksheet.
     """
 
-    print(f"\nUpdating '{worksheet}' worksheet...\n")
+    worksheet_name = worksheet.upper()
+    print(f"\nUpdating {worksheet_name} worksheet...")
     worksheet_to_update = SHEET.worksheet(worksheet)
 
     # adds new row to the end of the current data
     worksheet_to_update.append_row(new_row)
 
-    print(f"\n'{worksheet}' worksheet updated successfully\n")
+    print(f"\n{worksheet_name} worksheet updated successfully.")
 
 
 def update_student_result(new_row, worksheet):
     """
-    Update student data in the Prepare_Results's worksheets.
+    Update student result in worksheets.
     """
 
-    print(f"\nUpdating '{worksheet}' worksheet...\n")
+    worksheet_name = worksheet.upper()
+    print(f"\nUpdating {worksheet_name} worksheet...")
     worksheet_to_update = SHEET.worksheet(worksheet)
 
     # adds new row to the end of the current data
     for row in new_row:
         worksheet_to_update.append_row(row)
 
-    print(f"\n'{worksheet}' worksheet updated successfully\n")
+    print(f"\n{worksheet_name} worksheet updated successfully.")
 
 
 def calculate_grades(std_percentage):
@@ -128,37 +131,53 @@ def calculate_result():
     At last, called calculate_grades() function to assign grades to students.
     """
 
+    print("\nCalculating student(s) result...")
     marks = SHEET.worksheet('student_data').get_all_values()
     final_result = []
 
-    for i in range(1, len(marks)):
-        std_name = ''
-        total_marks = 0
-        result = []
+    if (len(marks) > 1):
 
-        for j in range(len(marks[i])):
+        for i in range(1, len(marks)):
+            std_name = ''
+            total_marks = 0
+            result = []
 
-            if j == 0:
-                std_name = marks[i][j]
-            else:
-                total_marks += int(marks[i][j])
+            for j in range(len(marks[i])):
 
-        result.append(std_name)
-        result.append(total_marks)
-        percentage = round(((total_marks / 500) * 100), 2)
-        result.append(percentage)
-        grade = calculate_grades(percentage)
-        result.append(grade)
-        final_result.append(result)
+                if j == 0:
+                    std_name = marks[i][j]
+                else:
+                    total_marks += int(marks[i][j])
+
+            result.append(std_name)
+            result.append(total_marks)
+            percentage = round(((total_marks / 500) * 100), 2)
+            result.append(percentage)
+            grade = calculate_grades(percentage)
+            result.append(grade)
+            final_result.append(result)
+    
+        print("\nStudent(s) result calculation completed successfully.")
+
+    else:
+        print("\nNo student data available to calculate result!")
 
     return final_result
 
 
 def show_result():
+    """
+    Show student(s) results.
+    """
+
     full_result = SHEET.worksheet('student_result').get_all_values()
-    for i in range(len(full_result)):
-        if i != 0:
-            print(f"| {full_result[i][0]} \t| {full_result[i][1]} \t| {full_result[i][2]} \t| {full_result[i][3]} | ")
+    if (len(full_result) > 1):
+        print()
+        for i in range(len(full_result)):
+            if (i != 0):
+                print(f"| {full_result[i][0]} \t| {full_result[i][1]} \t| {full_result[i][2]} \t| {full_result[i][3]} | ")
+    else:
+        print("\nNo result data to display!")
 
 
 def main():
@@ -167,28 +186,37 @@ def main():
     """
 
     while True:
-        print("Select option '1' to add student data.")
-        print("Select option '2' to view result.")
-        select_choice = int(input("\nChoose Option : "))
+        print("\nEnter '1' to add student data")
+        print("Enter '2' to calculate result")
+        print("Enter '3' to view result")
+        print("Enter '4' to exit")
+        select_choice = int(input("\nPlease, enter an option : "))
 
         if (select_choice == 1):
-            student_data = get_student_data()
-            update_student_data(student_data, "student_data")
 
-            print("Would you like to add more student data.")
-            print("Enter 'Y' for 'Yes' or 'N' for 'No'.")
-            add_data_check = input("\nEnter you choice : ")
+            while True:
+                student_data = get_student_data()
+                update_student_data(student_data, "student_data")
 
-            if (add_data_check.lower() != 'y'):
-                break
-            
+                print("\nEnter 'Y' to add more student data.")
+                print("Enter 'N' exit.")
+                add_data_check = input("\nPlease, enter your choice : ")
+
+                if (add_data_check.lower() != 'y'):
+                    break
+
         elif (select_choice == 2):
-            show_result()
-            break
+            student_result = calculate_result()
 
-    student_result = calculate_result()
-    update_student_result(student_result, "student_result")
-    show_result()
+            if (student_result):
+                update_student_result(student_result, "student_result")
+                show_result()
+
+        elif (select_choice == 3):
+            show_result()
+
+        elif (select_choice == 4):
+            break
 
 
 main()  # calling main function to run the whole program
