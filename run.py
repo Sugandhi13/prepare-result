@@ -123,16 +123,15 @@ def show_student_data():
     """
 
     full_student_data = SHEET.worksheet('student_data').get_all_values()
-    print("\n----------------------------------------------")
+    print()
 
     if (len(full_student_data) > 1):
-        for i in range(len(full_student_data)):
-            if (i != 0):
-                print(f"{full_student_data[i]}")
+        header = full_student_data[0]
+        data = full_student_data[1:]
+        print(tabulate(data, header, tablefmt="fancy_outline"))
+
     else:
         print("No student data to display!")
-
-    print("----------------------------------------------")
 
 
 def calculate_grades(std_percentage):
@@ -225,18 +224,16 @@ def show_result():
     """
 
     full_result = SHEET.worksheet('student_result').get_all_values()
-    print("\n----------------------------------------------")
+    print()
 
     if (len(full_result) > 1):
         header = full_result[0]
-        print(tabulate(full_result, header))
-#        for i in range(len(full_result)):
- #           if (i != 0):
-  #              print(f"{full_result[i]}")
+        data = full_result[1:]
+        print(tabulate(data, header, tablefmt="fancy_outline"))
+
     else:
         print("No result data to display!")
 
-    print("----------------------------------------------")
 
 
 def main():
