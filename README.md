@@ -213,35 +213,34 @@ I will try to improve further on this in coming days and considering it as a cha
 
 - **Github**: Store Repository
 - **Codeanywhere**: Create the html, CSS and JavaScript files
-- **Favicon.io** - To create the favicon.
-- **Google Chrome Dev Tools**: To aid the initial styling for media queries and testing at various screen sizes
-- **Microsoft Edge**: Site testing on an alternative browser
-- **Snipping Tool**: To take screenshot for images of various results
-- **Am I Responsive**: To ensure website looks good on different devices
-- **W3C Validator**: To validate HMTL pages
-- **W3C CSS Validator**: To validate CSS
-- **JSHint**: To validate JavaScript
-
+- **Gspread to enable the opening, accessing and reading of googlesheet data.
+-**Credentials they serve as unique identifiers required to access my API.
+-**Time was used to create a timely flow of event as the customer performs transactions.
+-**Pyfiglet was used to create the ASCII art headers.
+-**Subprocess was used to cleanly restart the program due to a bug that I couldn't find.
+-**OS was used to clear the terminal during the programs running.
+  
 # Deployment
 
-The site is deployed to GitHub pages. The steps to deploy are as follows:
+This app was deployed to Heroku. Below are the steps taken for its deployment
 
-- In the GitHub repository, select the quiz-india project from left pane 'Top Repositories' section
-- Click on Settings tab in navigation menu.
-- Select the 'Pages' tab in the 'Code and Automation' section.
-- From the Build and deployment section, go to source and select 'Deploy from a branch' in drop-down menu.
-- Next select the 'Main' branch under Branch drow-down menu.
-- Once the 'Main' branch has been selected, the page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment.
-- The live link for the site can be found here - [/sugandhi13.github.io/quiz-india](https://sugandhi13.github.io/quiz-india/)
-
+- Create and account and log in to heroku
+- Create a new app
+- Go to settings option
+- Add 'key/value' pairs. First key is CREDS and its value is copied from creds.json file on gitpod. The second key is PORT with 8000 as its value
+Add build pack. Add python first and then nodejs second in that order.
+- Go to the top of the page, then select 'deploy tab' and then choose 'Github deployment'.
+- Click to navigate to the deployed project
+- To clone the project, navigate to the repository button on the GitHub and select zip or open with Github desktop. After that, copy and paste the link to your git terminal by clicking GitHub CLI and the copy button in the code dropdown menu.
+- 
 # Credits
 
 I have really enjoyed the Code Institute course up till now, and I am looking forward to the next units of the course. I wanted to thank the Slack Community for their support learning the content and my Mentor Martina for her guidance with this project and assurances that creating a website is not as scary as I initially thought.
 
-As a starting point I looked at the Love Maths projects.
+As a starting point I looked at the Love Sandwiches projects.
 
-- From the Love Maths Project, I took inspiration about how to include JavaScript along with HTML and CSS.
-- Friends Trivia Quiz, My mentor has shared the GitHub repository created by Ila Bura. It helped me in great deal to understand and write JavaScripts functions and handle media queries in better way.
+- From the Love Sandwiches Project, I took inspiration about how to make application using python.
+- Bank of python, My mentor has shared the GitHub repository created by Full Stack Dev. It helped me in great deal to understand and write python  functions in better way.
 - W3School and Stackoverflow, I have referred these website to fix various issue that I faced while writing various types of code (CSS/JavaScript) for the website.
 
 # Content
