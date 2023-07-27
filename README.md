@@ -102,7 +102,7 @@ In this application a user has given 6 options upfront mentioned below. There ar
 
 ## Application Functions
 
-This application have 6 functions explained below in detail.
+This application have 6 functions explained below in detail. The application is equiped with complete validation rules. Hence if a user enters any invalid value, when asked to give input either as option to move to and from in menu or while entering student data, an error message will be displayed to user with the reason of error.
 
 ### Add New Data
 
@@ -128,53 +128,48 @@ Once the information is added the same information will be stored in *student_re
 ### View Student Data
 
 The user has to enter '3' if the user would like to see the student data. Whole data stored in *student_data* worksheet (Google Spreadsheet) will be displayed in tabular form. 
+If there is no data available in *student_data* worksheet then a message will be displayed to user that *"No student data to display!"*.
 
 ### View Result
 
-The user has to enter '4' if the user would like to see the student result data. Whole data stored in *student_result* worksheet (Google Spreadsheet) will be displayed in tabular form.
+The user has to enter '4' if the user would like to see the student result data. Whole data stored in *student_result* worksheet (Google Spreadsheet) will be displayed in tabular form. 
+If there is no data available in *student_result* worksheet then a message will be displayed to user that *"No student result data to display!"*.
 
 ### Clear Existing Data
 
-The user has to enter '5' if the user would like to delete any data already stored on Google Spreadsheet. If the user enters this option a sub menu will populate to confirm that which data the user want's to delete. The options are described below.
-1. **Delete Student Data:** The user has to enter '1' if the user would like to delete student data stored on *student_data* worksheet (Google Spreadsheet).
-    1. **Confirm Delete:** To confirm from user if he really wants to delete the whole student data.
-    2. **Return to Previous Menu:** To return to previous menu.
-2. **Delete Student Result Data:** To delete student result data.
-    1. **Confirm Delete:** To confirm from user if he really wants to delete the whole student result data.
-    2. **Return to Previous Menu:** To return to previous menu.
-3. **Exit:** To return to previous menu.
+The user has to enter '5' if the user would like to delete any data already stored on Google Spreadsheet. If the user enters this option a sub menu will populate to confirm that which data (Student Data or Student Results Data) the user want's to delete. These options are described below.
+1. **Delete Student Data:** The user has to enter '1' if the user would like to delete student data stored on *student_data* worksheet (Google Spreadsheet). If the user enter this option. A confirmation message will populate to user with Warning that once the data is deleted, it cann't be recovered and another confirmation from user will be required to proceed further and actually delete the data.
+    1. **Confirm Delete:** The user has to enter '1' to confirm that the data should be deleted. If the user confirms it then the data will be deleted from *student_data* worksheet (Google Spreadsheet) and only headings will remain in *student_data* worksheet (Google Spreadsheet) and a confirmation message will be displayed to user that data has been deleted successfully. If the *student_data* worksheet is already empty then a message will be displayed to user that *No data to delete.*.
+    2. **Return to Previous Menu:** A user has to enter '0' to if the user changes its mind and don't want to delete the data. If this option is entered then no further action will be taken and then the user will route back to pervious menu.
+2. **Delete Student Result Data:** The user has to enter '1' if the user would like to delete student result data stored on *student_result* worksheet (Google Spreadsheet). If the user enter this option. A confirmation message will populate to user with Warning that once the data is deleted, it cann't be recovered and another confirmation from user will be required to proceed further and actually delete the data.
+    1. **Confirm Delete:** The user has to enter '1' to confirm that the data should be deleted. If the user confirms it then the data will be deleted from *student_data* worksheet (Google Spreadsheet) and only headings will remain in *student_data* worksheet (Google Spreadsheet) and a confirmation message will be displayed to user that data has been deleted successfully. If the *student_data* worksheet is already empty then a message will be displayed to user that *No data to delete.*.
+    2. **Return to Previous Menu:** A user has to enter '0' to if the user changes its mind and don't want to delete the data. If this option is entered then no further action will be taken and then the user will route back to pervious menu.
+3. **Exit:** The user has to enter '0' to return on the previous menu. 
 
 ### End the Program
 
-A user has to enter '0' to end the program. If the user enter this option a thank you message will be displayed and program will end.
+A user has to enter '0' to end the program. If the user enter this option a thank you message *"Thank you! I hope you will visit again :)"* will be displayed and program will end.
 
 # Testing
 
-The site has been tested on a variety of mobile devices (iphone (iOS), OnePlus(Android)) as well as different web browsers (Chrome, Microsoft Edge) and all links, information about quiz, questions & options has functioned as it should. All input fields and options are required to be filled/clicked by the user before submitting.
+The site has been tested for all validation rules applied. All input fields and options are required to be filled correctly by the user before submitting. Also the application has been tested for the kind of data its asked to store/display does it or not.
 
-I personally tested the site extensively with Google Chrome dev tools to ensure the site works responsively not only on mobile devices but also on medium to larger screens.
-
-One of the biggest problems I encountered from the beginning handling css on different webpages. Then I took help from Love Math project as well as w3school and stackoverflow websites (mentioned in credits as well).
-
-Writing JavaScript functions to display 1 question at a time on the quiz page was the biggest challenge during this project. I have referred various code available on Stackoverflow website as well as couple of github project shared by my mentor "Martina Terlevic". With the help of all those code I am able to write the best fit code as per my current understanding of JavaScript.
-
-Some improvements are done on HTML pages after testing them on W3C Validator.
+Writing python functions main() to make sure the that the execution sequence stay correct and the user get in and out of different menues was the biggest challenge during this project. Along with this some difficulty were also faced while writing code for delete data from a worksheet or show results in tabular form. I have referred various code available on Stackoverflow, geeksforgeeks or python official website. I've also referred couple of github project shared by my mentor "Martina Terlevic". With the help of all those code I am able to write the best fit code as per my current understanding of Python.
 
 ### Manual Testing
 | Test Case | Expected Results | Results |
 | ----------- | ----------- | ----------- |
-| Open Quiz page | An event listener waits for the DOM to finish loading before running the quiz. The first question and 4 options are displayed. | As Expected |
-| Click on the Start Quiz button without providing any input in Name box | An error message should display and ask the user to fill that field. | As Expected |
-| Choose any other difficulty level like 'Medium' or 'Hard' instead of default 'Easy' | When user Choose any other difficulty level like 'Medium' or 'Hard' instead of default 'Easy' option the questions should show from respective difficulty levels. | As Expected |
-| Enter only Alphabets and single space in Name input box | An error message should display and ask the user to fill valid data in field | As Expected |
-| Click on Start Quiz button | A new page should open with showing Player Name, the level of difficulty the player has selected and default score should be 0. Also, none of the option should be checked by default. | As Expected |
-| Click on Submit button without choosing any option | A pop up message should appear and ask the user to select a valid option to move forward in the quiz | As Expected |
-| Choose a option and click on Submit button | If player has answered correctly then 10 points should be added in the score. But, if player has answered incorrect question then 5 points should be reduced from the score. Also make sure the new question should display on the screen with 4 new option with respect to new question | As Expected |
-| Choose an incorrect option and click on Submit button | If player has answered incorrectly then an alert message should be generate that shows correct answer of the question | As Expected |
-| Click on the Submit button after 5th question | The quiz area is cleared. The results message should display with correctly calculated total score and showing details about how many questions user have answered correctly out of total 5 questions | As Expected |
-| Click on the Try Again! button | The quiz should restart for the same difficulty level. | As Expected |
-| Click on the Select different level button | The landing page should display with option for player to change the difficulty level after entering his name. | As Expected |
-| Error (404) Page  | When a user enter an incorrect address of the website. Page 404.html should publish and inform user that no such webpage exsit and contains link to route user to home page | As Expected |
+| "Add New Data" open up and ask the user to fill student data When user enter option '1' | "Add New Data" section open up and ask the user to enter student name and marks in various subject one by one. Ex: Only after entring the student name the marks in 1st subject "Swedish" will be asked to enter and the same process will be followed further. Once the user enter all information a sub-menu should open up and ask the user if he wishes to add more students data. If the user confirms, repect the whole sequence once again. If user don't wish to enter any student data further, display all student data available till now and return to previous menu. | As Expected |
+| "Calculate Result" action should be performed When user enter option '2' | Results calculation (total marks, percentage scored and assignment of grade as per per-defined rules) should perform using student data stored on Google Spreadsheet and user should get message of result calculation begin and completed successfully. Also, results should be displayed at the end with total_marks, percentage and grade calculated correctly. | As Expected |
+| "View Student Data" action should be performed When user enter option '3' | "View Student Data" section open up and student data should be displayed. | As Expected |
+| "View Result" action should be performed When user enter option '4' | "View Result" section open up and student result data should be displayed. | As Expected |
+| "Clear Existing Data" action should be performed When user enter option '5' | "Clear Existing Data" section open up and a series of question should be asked to user which data (student data or results data) needs to be deleted. Also, double check with user along with Warning that data once deleted can't be recovered. If user confirms to delete the data. The respective data should be deleted from Google Spreadsheet. | As Expected |
+| "End the Program" action should be performed When user enter option '0' | The program should end successfully with a thank you message. | As Expected |
+| Error Message: The field should not be empty | When a user needs to be input any value either for any option or while adding student data like name or marks in different subject. If the user don't enter any data and try to move forward by pressing enter key. An error message should display that the field should not be empty | As Expected |
+| Error Message: Invalid integer value | When a user needs to be input any integer value either for any option or while adding student data (marks in different subject). If the user enter any non-integer value like alphabet or special character. An error message should display that the integer value expected. | As Expected |
+| Error Message: Invalid string value | When a user needs to be input any string value while adding student data (Student Name). If the user enter any integer or special character (except whitespace). An error message should display that the string value expected. | As Expected |
+| Error Message: Out of range value for student marks in different subject | When a user needs to input student data (marks in different subject). If the user enter out of range value (less than 0 or greater than 100). An error message should display that the value enter is out of range. | As Expected |
+| Error Message: Out of range value for different options | When a user needs to input the value for any option the user wants to select. If the user enter out of range value (outside the range of options provided). Ex: Main menu has option from 0 to 5 and user input 6. An error message should display that the invalid value entered. | As Expected |
 
 # Validator Testing
 
