@@ -1,16 +1,14 @@
 # Prepare Result
 
-Prepare Result project is developed with idea for making teachers life easy to make students result in quick and easy way.
+Prepare Result application is developed with idea for making teachers life easy to make students result in quick and easy manner. A user can use different options to add data of students, calculate results of all students, view student data added or result calculated. Also, the user has option to delete the student data or results calculated and start a fresh. The whole data is stored at backend on a Google Spreadsheet as well. Hence, a user has option to come back later and add more data or directly go and view student data or their results.
 
 ![Homepage-Image-AmIResponsible](/assets/images/quizindiahomepage.jpg)
 
-![Quizpage-Image-AmIResponsible](/assets/images/quizindiaquizpage.jpg)
-
-The Quiz India site is live, the links can be found [HERE](https://sugandhi13.github.io/quiz-india/)
+The Prepare Result site is live, the links can be found [HERE](https://sugandhi13.github.io/quiz-india/)
 
 # Table of contents
 
-- [Quiz India](#quiz-india)
+- [Prepare Result](#prepare-result)
 - [Table of contents](#table-of-contents)
 - [UX](#ux)
     - [Site Purpose](#site-purpose)
@@ -44,26 +42,36 @@ The Quiz India site is live, the links can be found [HERE](https://sugandhi13.gi
 
 # UX
 
-### Site Purpose
-The website contains 0-5 options. If user choose option 1, user can add data of student like Student full name, markrs in all 5 subjects. if user choose option 2 then user will get calculation of result, total amrks, percentage and grade of student according marks entered by user. option 3 will show all students details entered by user. option 4 will show full result of all students entered by user. with option 5 user clear the data of sheet.at last with option 0 user can exit the program. 
+###  Purpose
+The purpose of this application is to store student data (Name and Marks of 5 subjects). Calculate the results using student data added. View student data or the  result calculated. Store data on Google Spreadsheet to keep data for future use. Lastly, if users wishes, he has option to delete all data stored on Google Spreadsheet. 
 
 ### Audience
-This site designed for all teachers schools and all educational instuations. This site will help them tp prepare result of students in quick and esay way. 
+This site designed for school teachers or educational instuations. This site will help them to prepare result of students in quick and esay manner. 
 
 ### Communication
-The overall design was kept extremely simple on purpose: the user can can read about the quiz and its rules about how much score is going to be awared for each correct answer as well as what panelty of score they have to pay for incorrect answer. As soon as user enter its name and choose level of difficulty based upon its comfort the quiz will start with respective difficulty level of questions. The visual structure of the quiz makes it intuitive to go through the 5 questions of each level. The user is notified of their final score after answering the last question of each level.
+The overall design was kept extremely simple on purpose. A user has following options while using this site.
+1. **Add New Data:** To add student data like Name and marks in different subject.
+2. **Calculate Result:** To calculate the results (Total markes, percentage scored and assign grade as per rules defined) of all students. 
+3. **View Student Data:** To view the the student data of all students added by the user.
+4. **View Result:** To view the result of all students added by the user.
+5. **Clear Existing Data:** To delete student data or student result data.
+6. **End the Program:** To end the program.
 
 ### User Goals
-Challenge the user to test their knowledge and find the correct answers to the quiz. If they wish to retake the quiz at the end to better their score, a button is displayed to start the quiz again with same difficulty level or another button with the option to change the level of difficulty.
+The main user goal we have tried to achieve here is to help them calculating the student result fast and accurately. This application will not only calculate the total marks scored by student in 5 subjects but calculate and display the percentage scored in total and assign the grade according to the rules given.
 
 ### Future Goals
-Add some question with some images, audio or visual capability to engage the user more. The user would also be more engaged to complete the quiz if a timer was displayed with limited amount of time to answer each question.
+The more I was working on this application the more I was getting hopeful that what all can be done here. Listing below a few near future goals with respect to this application features.
+- Flexibility for user to add subjects as per his own wish
+- Edit the student data
+- Delete a specific student record
+- Power in the hand of user to set rules for different grades
 
 # Design
 
-### Text & Background color
+### Wireframe
 
-Indian national flag have 3 main colors as Orange, White and Green. Hence, the color theme of my website is based upon the same colors contrasts. We have choosen the background color of website consist of blend of these 3 colors, similar to the flag have Orange at top, White in the middle and Green at the bottom. The main area is kept as light blue to support text in Orange for headers and paragraps in green color. Buttons on Index.html and Quiz.html page has Green colored background with Options having Orange colored background. When a user hover over the button some effects have been added with additional use of Voilet color. Try again button on results page have Green colored background whereas the link to restart the quiz is in voilet color background with some effect when user hover over the button. The text on results page consist of brown color with all fields that are dynamic like username, score and correct answer for total question in Green color.
+Microsoft Powerpoint was used to plan the logic for this project. Below is a screenshot of the logic.
 
 # Features
 
@@ -71,44 +79,74 @@ Indian national flag have 3 main colors as Orange, White and Green. Hence, the c
 
 ### Languages Used
 
-- HTML5
-- CSS3
-- JavaScript
+- Python
 
 ### Navigation
 
-In my website I've 2 pages but the navigation for them is allowed only 2 ways.
-- 1st is when a user click on 'Start Quiz' button on index.html page. The new page (quiz.html) opens.
-- 2nd option is when a user click on 'Select different level' button under result message on quiz.html page. The index.html page opens.
-There also a way to go back on quiz.html page when a user click on 'Try again!' button under result message.
+In this application a user has given 6 options upfront mentioned below. There are also some sub menus mentioned below as well.
+1. **Add New Data:** To add student data like Name and marks in different subject.
+    1. **Add more Student Data:** To add more student data without exiting to previous menu.
+    2. **Exit:** To return to previous menu.
+2. **Calculate Result:** To calculate the results (Total markes, percentage scored and assign grade as per rules defined) of all students. 
+3. **View Student Data:** To view the the student data of all students added by the user.
+4. **View Result:** To view the result of all students added by the user.
+5. **Clear Existing Data:** To delete student data or student result data.
+    1. **Delete Student Data:** To delete student data.
+        1. **Confirm Delete:** To confirm from user if he really wants to delete the whole student data.
+        2. **Return to Previous Menu:** To return to previous menu.
+    2. **Delete Student Result Data:** To delete student result data.
+        1. **Confirm Delete:** To confirm from user if he really wants to delete the whole student result data.
+        2. **Return to Previous Menu:** To return to previous menu.
+    3. **Exit:** To return to previous menu.
+6. **End the Program:** To end the program.
 
-## Home Page
+## Application Functions
 
-### Landing Page
+This application have 6 functions explained below in detail.
 
-A Main page consist of information about the quiz and rules about how the scores calculations will be performed. This page also has an input box, where the user have to enter its name, along with 3 options ('Easy', 'Medium' and 'Hard') level of difficulty of quiz to choose from. Once the user clicks the 'Start Quiz' button the user will be routed to next page where the question will be displayed.
+### Add New Data
 
-![Homepage-Image](/assets/images/homepage.jpg)
+The user has to enter '1' if data for a student needs to be added to calculate the result. A series of questions will be asked to add student name and marks in different subjects. Each subject has been assumed to be of 100 marks. Hence, the user can only enter the marks between the range of 0 to 100. Once the information is added the same information will be stored in *student_data* worksheet (Google Spreadsheet). After that, a sub menu populate and check with user if he would like to add more student data or not.
+- **Add more Student Data:** A user has to enter '1' if he wishes to enter more student data. If this option is entered then again the same series of question will be asked as mentioned in point 1 above and at the end again the sub menu will populate to reconfirm from user if the user want to add more student data or not.
+- **Exit:** A user has to enter '0' to exit from the loop of keep adding user data, if he has no more data to add. If this option is entered then the whole student data stored on *student_data* worksheet (Google Spreadsheet) will be displayed in tabular form and then the user will route back to pervious menu.
 
-### Quiz Page
+### Calculate Result
 
-This page have 2 features explained below.
+The user has to enter '2' if the results of all students needs to be calculated. This function helps to calculate the following values for each student.
+- **Total Markes:** This will be calculated by the sum of marks scored by a student in all 5 subjects.
+- **Percentage Scored:** This will be calculated by the *Total Marks* scored by a student against maximum marks of 500 (total of all subjects).
+- **Grade:** This will be calculated by using the *Percentage Scored* by a student against a set of per-defined rules given below.
+    - Grade A+, if *Percentage Scored* is greater than or equal to 95
+    - Grade A, if *Percentage Scored* is greater than or equal to 85
+    - Grade B+, if *Percentage Scored* is greater than or equal to 70
+    - Grade B, if *Percentage Scored* is greater than or equal to 55
+    - Grade C, if *Percentage Scored* is greater than or equal to 40
+    - Grade F (Fail), if *Percentage Scored* is less than 40
 
-- **User Info Section** : This section display the Username, difficulty level of the quiz choosen by user and current score of user. 
-- **Question & Answer Area** : This section displays one question at a time with 4 options to user. Out of 4 one option has correct answer and 3 incorrect. Once user select an option and click on 'Submit' button. The quiz move to next question with 4 options with respect to that question and the cycle continues. If the user has answered correctly then the score will be updated with +10 points. But, if the users answers incorrectly the score will updated with -5 points and an alert is generated that shows correct answer to the user. If the user try to click on Submit button without selecting any option an alert message will be shown to user to select any one option to move forward with quiz.
+Once the information is added the same information will be stored in *student_result* worksheet (Google Spreadsheet). Also, the results of all students will be displayed at the end in tabular form.
 
-![Quizpage-Image](/assets/images/quizpage.jpg)
+### View Student Data
 
-### Results Message
+The user has to enter '3' if the user would like to see the student data. Whole data stored in *student_data* worksheet (Google Spreadsheet) will be displayed in tabular form. 
 
-Once all 5 questions were answered by user. Then the result message will be displayed to the user. In this message user will get information like how many correct answers he has given and total score he has socred based upon calculation described above. The user gets two choices (1) Try Again - it wil route the user on quiz with same difficulty level as he has last selected. (2) Select different level - it will route the user to landing page (index.html) where he can restart the quiz with same or new difficulties level. 
+### View Result
 
-![Result-Message-Image](/assets/images/resultpage.jpg)
+The user has to enter '4' if the user would like to see the student result data. Whole data stored in *student_result* worksheet (Google Spreadsheet) will be displayed in tabular form.
 
-### 404 Page
-A 404.html page notifies the user with the following message:"Oops! Nothing to see here! Go back to the homepage". The word "homepage" is clickable and redirects the user to the landing (index.html) page of the Quiz India.
+### Clear Existing Data
 
-![Error-Message-Image](/assets/images/errorpage.jpg)
+The user has to enter '5' if the user would like to delete any data already stored on Google Spreadsheet. If the user enters this option a sub menu will populate to confirm that which data the user want's to delete. The options are described below.
+1. **Delete Student Data:** The user has to enter '1' if the user would like to delete student data stored on *student_data* worksheet (Google Spreadsheet).
+    1. **Confirm Delete:** To confirm from user if he really wants to delete the whole student data.
+    2. **Return to Previous Menu:** To return to previous menu.
+2. **Delete Student Result Data:** To delete student result data.
+    1. **Confirm Delete:** To confirm from user if he really wants to delete the whole student result data.
+    2. **Return to Previous Menu:** To return to previous menu.
+3. **Exit:** To return to previous menu.
+
+### End the Program
+
+A user has to enter '0' to end the program. If the user enter this option a thank you message will be displayed and program will end.
 
 # Testing
 
