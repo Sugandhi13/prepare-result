@@ -211,14 +211,14 @@ I will try to improve further on this in coming days and considering it as a cha
 
 # Libraries & Programs Used
 
-- **Github**: Store Repository
-- **Codeanywhere**: Create the html, CSS and JavaScript files
-- **Gspread to enable the opening, accessing and reading of googlesheet data.
--**Credentials they serve as unique identifiers required to access my API.
--**Time was used to create a timely flow of event as the customer performs transactions.
--**Pyfiglet was used to create the ASCII art headers.
--**Subprocess was used to cleanly restart the program due to a bug that I couldn't find.
--**OS was used to clear the terminal during the programs running.
+- **Github:** Store Repository
+- **Codeanywhere:** Create the html, CSS and JavaScript files
+- **Gspread:** to enable the opening, accessing and reading of googlesheet data.
+- **Credentials:** they serve as unique identifiers required to access my API.
+- **Time:** was used to create a timely flow of event as the customer performs transactions.
+- **Pyfiglet:** was used to create the ASCII art headers.
+- **Subprocess:** was used to cleanly restart the program due to a bug that I couldn't find.
+- **OS:** was used to clear the terminal during the programs running.
   
 # Deployment
 
@@ -227,12 +227,12 @@ This app was deployed to Heroku. Below are the steps taken for its deployment
 - Create and account and log in to heroku
 - Create a new app
 - Go to settings option
-- Add 'key/value' pairs. First key is CREDS and its value is copied from creds.json file on gitpod. The second key is PORT with 8000 as its value
-Add build pack. Add python first and then nodejs second in that order.
+- Add 'key/value' pairs. First key is CREDS and its value is copied from creds.json file on gitpod. The second key is PORT with 8000 as its value 
+- Add build pack. Add python first and then nodejs second in that order.
 - Go to the top of the page, then select 'deploy tab' and then choose 'Github deployment'.
 - Click to navigate to the deployed project
 - To clone the project, navigate to the repository button on the GitHub and select zip or open with Github desktop. After that, copy and paste the link to your git terminal by clicking GitHub CLI and the copy button in the code dropdown menu.
-- 
+
 # Credits
 
 I have really enjoyed the Code Institute course up till now, and I am looking forward to the next units of the course. I wanted to thank the Slack Community for their support learning the content and my Mentor Martina for her guidance with this project and assurances that creating a website is not as scary as I initially thought.
