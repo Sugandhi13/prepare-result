@@ -132,6 +132,8 @@ The user has to enter '1' if data for a student needs to be added to calculate t
 
 - **Exit:** A user has to enter '0' to exit from the loop of keep adding user data, if he has no more data to add. If this option is entered then the whole student data stored on *student_data* worksheet (Google Spreadsheet) will be displayed in tabular form and then the user will route back to pervious menu.
 
+![No-More-Data-To-Add](/assets/images/nomoredatatoadd.jpg)
+
 ### Calculate Result
 
 The user has to enter '2' if the results of all students needs to be calculated. This function helps to calculate the following values for each student.
@@ -163,6 +165,8 @@ If there is no data available in *student_result* worksheet then a message will 
 
 ![View-Result-Data](/assets/images/viewresultdata.jpg)
 
+![No-Result-Data](/assets/images/noresultdata.jpg)
+
 ### Delete Data Stored
 
 The user has to enter '5' if the user would like to delete any data already stored on Google Spreadsheet. If the user enters this option a sub menu will populate to confirm that which data (Student Data or Student Results Data) the user want's to delete. These options are described below.
@@ -173,6 +177,8 @@ The user has to enter '5' if the user would like to delete any data already stor
     1. **Confirm Delete:** The user has to enter '1' to confirm that the data should be deleted. If the user confirms it then the data will be deleted from *student_data* worksheet (Google Spreadsheet) and only headings will remain in *student_data* worksheet (Google Spreadsheet) and a confirmation message will be displayed to user that data has been deleted successfully. If the *student_data* worksheet is already empty then a message will be displayed to user that *No data to delete.*.
 
     ![Delete-Student-Data](/assets/images/deletestudentdata.jpg)
+
+    ![No-Data-To-Delete](/assets/images/nodatatodelete.jpg)
 
     2. **Return to Previous Menu:** A user has to enter '0' to if the user changes its mind and don't want to delete the data. If this option is entered then no further action will be taken and then the user will route back to pervious menu.
 2. **Delete Student Result Data:** The user has to enter '1' if the user would like to delete student result data stored on *student_result* worksheet (Google Spreadsheet). If the user enter this option. A confirmation message will populate to user with Warning that once the data is deleted, it cann't be recovered and another confirmation from user will be required to proceed further and actually delete the data.
