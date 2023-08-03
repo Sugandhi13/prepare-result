@@ -92,12 +92,12 @@ Microsoft Powerpoint was used to plan the logic for this project. Below is a scr
 
 Different colors are used to display different kind of information on the terminal.
 
-- The error messages text are displayed in red font (Format code: \033[1;31m).
-- The thankyou message text while ending the program is displayed in green font (Format code: \033[1;32m).
-- All kind of menus texts are displayed in yellow font (Format code: \033[1;33m).
-- Any important text is displayed in purple font (Format code: \033[1;35m).
-- Any informational message text is display in cyan font format (Format code: \033[1;36m)
-- All line brakes added to separate the text is and any input asked from the user is displayed in white font format (Format code: \033[1;37m)
+- The error messages text are displayed in red color format(Format code: \033[1;31m).
+- The thankyou message text while ending the program is displayed in green color format(Format code: \033[1;32m).
+- All kind of menus texts are displayed in yellow color format(Format code: \033[1;33m).
+- Any important text is displayed in purple color format(Format code: \033[1;35m).
+- Any informational message text is display in cyan color format (Format code: \033[1;36m)
+- All line brakes added to separate the text is and any input asked from the user is displayed in white color format (Format code: \033[1;37m)
 
 ### Navigation
 
@@ -124,17 +124,17 @@ This application have 6 functions explained below in detail. The application is 
 
 ### Add New Data
 
-The user has to enter '1' if data for a student needs to be added to calculate the result. A series of questions will be asked to add student name and marks in different subjects. Each subject has been assumed to be of 100 marks. Hence, the user can only enter the marks between the range of 0 to 100. Once the information is added the same information will be stored in *student_data* worksheet (Google Spreadsheet). After that, a sub menu populate and check with user if he would like to add more student data or not.
+The user has to enter '1' if data for a student needs to be added to calculate the result. A series of questions will be asked to add student name and marks in different subjects. Each subject has been assumed to be of 100 marks. Hence, the user can only enter the marks between the range of 0 to 100. Once the information is added the same information will be stored in *student_data* worksheet (Google Spreadsheet). After that, a sub menu will populate and check with user if he would like to add more student data or not.
 
 ![Add-New_Data](/assets/images/addnewdata.jpg)
 
 - **Add more Student Data:** A user has to enter '1' if he wishes to enter more student data. If this option is entered then again the same series of question will be asked as mentioned in point 1 above and at the end again the sub menu will populate to reconfirm from user if the user want to add more student data or not.
 
-![Add-More-Student-Data](/assets/images/addmorestudentdata.jpg)
+    ![Add-More-Student-Data](/assets/images/addmorestudentdata.jpg)
 
 - **Exit:** A user has to enter '0' to exit from the loop of keep adding user data, if he has no more data to add. If this option is entered then the whole student data stored on *student_data* worksheet (Google Spreadsheet) will be displayed in tabular form and then the user will route back to pervious menu.
 
-![No-More-Data-To-Add](/assets/images/nomoredatatoadd.jpg)
+    ![No-More-Data-To-Add](/assets/images/nomoredatatoadd.jpg)
 
 ### Calculate Result
 
@@ -149,7 +149,7 @@ The user has to enter '2' if the results of all students needs to be calculated.
     - Grade C, if *Percentage Scored* is greater than or equal to 40
     - Grade F (Fail), if *Percentage Scored* is less than 40
 
-Once the information is added the same information will be stored in *student_result* worksheet (Google Spreadsheet). Also, the results of all students will be displayed at the end in tabular form.
+Once the information is added the same information will be stored in *std_result* worksheet (Google Spreadsheet). Also, the results of all students will be displayed at the end in tabular form.
 
 ![Calculate-Result](/assets/images/calculateresult.jpg)
 
@@ -162,12 +162,16 @@ If there is no data available in *student_data* worksheet then a message will be
 
 ### View Result
 
-The user has to enter '4' if the user would like to see the student result data. Whole data stored in *student_result* worksheet (Google Spreadsheet) will be displayed in tabular form. 
-If there is no data available in *student_result* worksheet then a message will be displayed to user that *"No student result data to display!"*.
+The user has to enter '4' if the user would like to see the student result data. Whole data stored in *std_result* worksheet (Google Spreadsheet) will be displayed in tabular form. 
+If there is no data available in *std_result* worksheet then a message will be displayed to user that *"No student result data to display!"*.
 
-![View-Result-Data](/assets/images/viewresultdata.jpg)
+- **If Result data exists:**
 
-![No-Result-Data](/assets/images/noresultdata.jpg)
+    ![View-Result-Data](/assets/images/viewresultdata.jpg)
+
+- **If Result data does not exists:**
+
+    ![No-Result-Data](/assets/images/noresultdata.jpg)
 
 ### Delete Data Stored
 
@@ -183,8 +187,8 @@ The user has to enter '5' if the user would like to delete any data already stor
     ![No-Data-To-Delete](/assets/images/nodatatodelete.jpg)
 
     2. **Return to Previous Menu:** A user has to enter '0' to if the user changes its mind and don't want to delete the data. If this option is entered then no further action will be taken and then the user will route back to pervious menu.
-2. **Delete Student Result Data:** The user has to enter '1' if the user would like to delete student result data stored on *student_result* worksheet (Google Spreadsheet). If the user enter this option. A confirmation message will populate to user with Warning that once the data is deleted, it cann't be recovered and another confirmation from user will be required to proceed further and actually delete the data.
-    1. **Confirm Delete:** The user has to enter '1' to confirm that the data should be deleted. If the user confirms it then the data will be deleted from *student_data* worksheet (Google Spreadsheet) and only headings will remain in *student_data* worksheet (Google Spreadsheet) and a confirmation message will be displayed to user that data has been deleted successfully. If the *student_data* worksheet is already empty then a message will be displayed to user that *No data to delete.*.
+2. **Delete Student Result Data:** The user has to enter '1' if the user would like to delete student result data stored on *std_result* worksheet (Google Spreadsheet). If the user enter this option. A confirmation message will populate to user with Warning that once the data is deleted, it cann't be recovered and another confirmation from user will be required to proceed further and actually delete the data.
+    1. **Confirm Delete:** The user has to enter '1' to confirm that the data should be deleted. If the user confirms it then the data will be deleted from *std_result* worksheet (Google Spreadsheet) and only headings will remain in *std_result* worksheet (Google Spreadsheet) and a confirmation message will be displayed to user that data has been deleted successfully. If the *std_result* worksheet is already empty then a message will be displayed to user that *No data to delete.*.
     2. **Return to Previous Menu:** A user has to enter '0' to if the user changes its mind and don't want to delete the data. If this option is entered then no further action will be taken and then the user will route back to pervious menu.
 3. **Exit:** The user has to enter '0' to return on the previous menu. 
 
@@ -215,11 +219,11 @@ Writing python functions main() to make sure the that the execution sequence sta
 ### Manual Testing
 | Test Case | Expected Results | Results |
 | ----------- | ----------- | ----------- |
-| "Add New Data" open up and ask the user to fill student data When user enter option '1' | "Add New Data" section open up and ask the user to enter student name and marks in various subject one by one. Ex: Only after entring the student name the marks in 1st subject "Swedish" will be asked to enter and the same process will be followed further. Once the user enter all information a sub-menu should open up and ask the user if he wishes to add more students data. If the user confirms, repect the whole sequence once again. If user don't wish to enter any student data further, display all student data available till now and return to previous menu. | As Expected |
+| "Add New Data" open up and ask the user to fill student data When user enter option '1' | "Add New Data" section open up and ask the user to enter student name and marks in various subject one by one. Ex: Only after entring the student name the marks in 1st subject "Swedish" will be asked to enter and the same process will be followed further. Once the user enter all information a sub-menu should open up and ask the user if he wishes to add more students data. If the user confirms, repeat the whole sequence once again. If user don't wish to enter any student data further, display all student data available till now and return to previous menu. | As Expected |
 | "Calculate Result" action should be performed When user enter option '2' | Results calculation (total marks, percentage scored and assignment of grade as per per-defined rules) should perform using student data stored on Google Spreadsheet and user should get message of result calculation begin and completed successfully. Also, results should be displayed at the end with total_marks, percentage and grade calculated correctly. | As Expected |
 | "View Student Data" action should be performed When user enter option '3' | "View Student Data" section open up and student data should be displayed. | As Expected |
 | "View Result" action should be performed When user enter option '4' | "View Result" section open up and student result data should be displayed. | As Expected |
-| "Clear Existing Data" action should be performed When user enter option '5' | "Clear Existing Data" section open up and a series of question should be asked to user which data (student data or results data) needs to be deleted. Also, double check with user along with Warning that data once deleted can't be recovered. If user confirms to delete the data. The respective data should be deleted from Google Spreadsheet. | As Expected |
+| "Delete Data Stored" action should be performed When user enter option '5' | "Delete Data Stored" section open up and a series of question should be asked to user which data (student data or results data) needs to be deleted. Also, double check with user along with Warning that data once deleted can't be recovered. If user confirms to delete the data. The respective data should be deleted from Google Spreadsheet. | As Expected |
 | "End the Program" action should be performed When user enter option '0' | The program should end successfully with a thank you message. | As Expected |
 | Error Message: The field should not be empty | When a user needs to be input any value either for any option or while adding student data like name or marks in different subject. If the user don't enter any data and try to move forward by pressing enter key. An error message should display that the field should not be empty | As Expected |
 | Error Message: Invalid integer value | When a user needs to be input any integer value either for any option or while adding student data (marks in different subject). If the user enter any non-integer value like alphabet or special character. An error message should display that the integer value expected. | As Expected |
@@ -249,9 +253,9 @@ In application, When a user needs to input an integer value, only numbers as inp
 
 # Unfixed Bugs
 
-When we did the code validation using PEP8 - CI Python Linter. It has shown line lengths errors at various places in my code. I've fixed them with shorten the text in smartest way possible as well as reduced the length of some variables name to make sure the code link fits in required line width.
+When we did the code validation using PEP8 - CI Python Linter. It has shown line lengths errors at various places in my code. I've fixed them with shorten the text in smartest way possible as well as reduced the length of some variables name to make sure the code length fits in required line width.
 
-I've also faced some error while trying to implement validation rules on various input fields. I've fixed them by using try/catch functionality. 
+I've also faced some error while trying to implement validation rules on various input fields. I've fixed them by using try/except functionality. 
 
 There is no known unfixed bug in my code as per my understanding.
 
@@ -264,6 +268,7 @@ There is no known unfixed bug in my code as per my understanding.
 - **Tabulate *(Python Library)*:** This python library is used to convert data from list into tabular form while printing on terminal.
 - **Heroku:** This is used to deploy my application to be accessed by public.
 - **CI Python Linter:** This is used for python code validation.
+- **MS Powerpoint:** This is used to create the project flowchart.
   
 # Deployment
 
@@ -293,14 +298,14 @@ As a starting point I looked at the Love Sandwiches projects.
 - From the Love Sandwiches Project, I took inspiration about how to make application using python.
 - Bank of python, My mentor has shared the GitHub repository created by an old CI student. It helped me in great deal to think a different idea than the most popular suggestion available on the internet.
 - Stackoverflow, I have referred this website to take guidance regarding how to empty a google spreadsheet from python.
-- Geeksforgeeks, I have referred this website to understand the code about how to restring the user to enter only alphabets and spaces for a string input field.
+- Geeksforgeeks, I have referred this website to understand the code about how to restrict the user to enter only alphabets and spaces for a string input field.
 - Educba, This website helped me to understand how to print output as a table.
 - pypi, This website I have used to try, test and used different table formatting option available in python using tabulate library.
 - Kaggle, I used kaggle.com to understand how to apply different colors for python text printing on the terminal.
 
 # Content
 
-Following websites have been used as to get better understanding and apply different logics while creating Prepare Result application.
+Following websites have been used to get better understanding and apply different logics while creating Prepare Result application.
 
 - [geeksforgeeks.org](https://www.geeksforgeeks.org/python-test-if-string-contains-alphabets-and-spaces/)
 - [stackoverflow.com](https://stackoverflow.com/questions/41986898/google-sheets-api-python-clear-sheet)
