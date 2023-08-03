@@ -6,6 +6,10 @@ The Prepare Result application is live on Heroku, the links can be found [HERE](
 
 ![Homepage-Image](/assets/images/landingview.jpg)
 
+### Am I Responsive 
+
+![AmIResponsive-Image](/assets/images/amiresponsive.jpg)
+
 # Table of contents
 
 - [Prepare Result](#prepare-result)
