@@ -206,7 +206,7 @@ A user has to enter '0' to end the program. If the user enter this option a than
 
 Google spreadsheet has been used to store the student data entered by the user as well as the results calculated by this application for the user. The goole spreadsheet also used as storage database and it helps the user to come at any point back on the system and either add more student data and refresh the results or delete data stored.
 
-- **Link to Google Spreadheet:** [Google-Spreadsheet](https://docs.google.com/spreadsheets/d/1CDm2xKiSMI9VKB0jdZX4y-MSVKs1DE3LTkUuk_HTJGk/edit?usp=sharing)
+- **Link to Google Spreadheet:** [Prepare-Result](https://docs.google.com/spreadsheets/d/1CDm2xKiSMI9VKB0jdZX4y-MSVKs1DE3LTkUuk_HTJGk/edit?usp=sharing)
 
 ### Student Data Worksheet
 
