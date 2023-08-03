@@ -1,10 +1,10 @@
 # Prepare Result
 
-Prepare Result application is developed with idea for making teachers life easy to make students result in quick and accurate manner. A user can use different options to add data of students, calculate results of all students, view student data added or result calculated. Also, the user has option to delete the student data or results calculated and start a fresh. The whole data is stored at backend on a Google Spreadsheet as well. Hence, a user has option to come back later and add more data or directly go and view student data or their results.
+Prepare Result application is developed with the idea for making teachers life easy to make students result in quick and accurate manner. A user can use different options like add data of students, calculate results of all students, view student data added or result calculated. Also, the user has option to delete the student data or results calculated and start a fresh. The whole data is stored at backend on a Google Spreadsheet as well. Hence, the user has option to come back later and add more data or directly go and view student data or their results.
+
+The Prepare Result application is live on Heroku, the links can be found [HERE](https://prepare-result-7eb68397c985.herokuapp.com/)
 
 ![Homepage-Image](/assets/images/landingview.jpg)
-
-The Prepare Result application is live on Heroku, the links can be found [HERE](https://sugandhi13.github.io/quiz-india/)
 
 # Table of contents
 
@@ -55,8 +55,8 @@ This site designed for school teachers or educational instuations. This site wil
 
 ### Communication
 The overall design was kept extremely simple on purpose. A user has following options while using this site.
-1. **Add New Data:** To add student data like Name and marks in different subject.
-2. **Calculate Result:** To calculate the results (Total markes, percentage scored and assign grade as per rules defined) of all students. 
+1. **Add New Data:** To add student data like Name and marks in different subjects.
+2. **Calculate Result:** To calculate the results (Total markes, percentage scored and assign grade as per rules defined) for all students. 
 3. **View Student Data:** To view the the student data of all students added by the user.
 4. **View Result:** To view the result of all students added by the user.
 5. **Delete Data Stored:** To delete student data or student result data.
@@ -76,7 +76,9 @@ The more I was working on this application the more I was getting hopeful that w
 
 ### Wireframe
 
-Microsoft Powerpoint was used to plan the logic for this project. Below is a screenshot of the logic.
+Microsoft Powerpoint was used to plan the logic for this project. Below is a screenshot of the project functionality flow.
+
+![Project-Flowchart](/assets/images/projectflowchart.jpg)
 
 # Features
 
