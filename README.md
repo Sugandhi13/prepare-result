@@ -13,6 +13,7 @@ The Prepare Result application is live on Heroku, the links can be found [HERE](
 # Table of contents
 
 - [Prepare Result](#prepare-result)
+    - [Am I Responsive](#am-i-responsive)
 - [Table of contents](#table-of-contents)
 - [UX](#ux)
     - [Application Purpose](#application-purpose)
@@ -43,6 +44,7 @@ The Prepare Result application is live on Heroku, the links can be found [HERE](
     - [PEP8 - CI Python Linter](#pep8---ci-python-linter)
     - [String Input Validation](#string-input-validation)
     - [Integer Input Validation](#integer-input-validation)
+    - [Options Validation](#options-validation)
 - [Unfixed Bugs](#unfixed-bugs)
 - [Libraries \& Programs Used](#libraries--programs-used)
 - [Deployment](#deployment)
@@ -247,15 +249,21 @@ No errors were returned when code verified through the PEP8 - CI Python Linter.
 
 ### String Input Validation
 
-In application, When a user needs to input a string value, only alphabets and spaces as input are allowed in such cases. If user tries to leave it blank, enters special characters or numeric values. The error is getting generated as expected.
+In application, When a user needs to input a string value, only alphabets and spaces as input are allowed in such cases. If user tries to leave it blank, enters special characters or numeric values. The errors are getting generated as expected.
 
 ![String-Input-Validation](/assets/images/validationsonstudentname.jpg)
 
 ### Integer Input Validation
 
-In application, When a user needs to input an integer value, only numbers as input are allowed in such cases. If user tries to leave it blank, enters special characters or alphabets values. The error is getting generated as expected.
+In application, When a user needs to input an integer value, only numbers as input are allowed in such cases. If user tries to leave it blank, enters special characters or alphabets values. The errors are getting generated as expected.
 
 ![Integer-Input-Validation](/assets/images/validationsonstudentmarks.jpg)
+
+### Options Validation
+
+In application, When a user needs to input a value for an option to choose a functionality of program. If user tries to leave it blank, enters special characters, alphabets or any numeric value out of range for the respective menu's options. The errors are getting generated as expected.
+
+![Options-Validation](/assets/images/validationsonoptionstoenter.jpg)
 
 # Unfixed Bugs
 
